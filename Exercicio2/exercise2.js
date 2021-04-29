@@ -19,13 +19,25 @@ const fetch = require('node-fetch')
 
 function getIngredients(meal) {
 
-    const mealEntries = Object.entries(meal)
+    const mealEntries = Object.entries(meal);
 
     return mealEntries
             .filter(([key, value]) => key.startsWith("strIngredient") && value && value.trim())
             .map(([key, value]) => value)
             .join(", ");
 }
+
+// function getIngredients(receita) {
+//     const listaIngredientes = [];
+
+//     for(let elemento in receita) {
+//         const ingrediente = elemento
+//         if(ingrediente.match('strIngredient') && receita[ingrediente]) {
+//             listaIngredientes.push(receita[ingrediente])
+//         }
+//     }
+//     return listaIngredientes;
+// }
 
 fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=52772')
     .then((response) => {
